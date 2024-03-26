@@ -1,9 +1,3 @@
----
-runme:
-  id: 01HSWPBVM4A0DDWH22MFZHP2G1
-  version: v3
----
-
 # IaC with Terraform on AWS
 
 A series of IaC projects provisioning AWS infrastruture using Terraform
