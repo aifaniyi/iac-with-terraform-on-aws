@@ -20,23 +20,33 @@ resource "aws_vpc" "sample_vpc" {
   }
 }
 
-# create public and private subnets
-resource "aws_subnet" "sample_public_subnet" {
+# create 2 public and 2 private subnets for HA
+resource "aws_subnet" "sample_public_subnet_1" {
   cidr_block = "10.0.1.0/24"
-  vpc_id = aws_vpc.sample_vpc.id
+  vpc_id     = aws_vpc.sample_vpc.id
 }
 
-resource "aws_subnet" "sample_private_subnet" {
+resource "aws_subnet" "sample_public_subnet_2" {
   cidr_block = "10.0.2.0/24"
-  vpc_id = aws_vpc.sample_vpc.id
+  vpc_id     = aws_vpc.sample_vpc.id
 }
 
-# add internet gateway
+resource "aws_subnet" "sample_private_subnet_1" {
+  cidr_block = "10.0.3.0/24"
+  vpc_id     = aws_vpc.sample_vpc.id
+}
+
+resource "aws_subnet" "sample_private_subnet_2" {
+  cidr_block = "10.0.4.0/24"
+  vpc_id     = aws_vpc.sample_vpc.id
+}
+
+# add a single internet gateway
 resource "aws_internet_gateway" "sample_igw" {
   vpc_id = aws_vpc.sample_vpc.id
 }
 
-# add a route table
+# add a single route table
 resource "aws_route_table" "sample_public_route_table" {
   vpc_id = aws_vpc.sample_vpc.id
   route {
@@ -45,8 +55,14 @@ resource "aws_route_table" "sample_public_route_table" {
   }
 }
 
-# associate route table with public subnet
-resource "aws_route_table_association" "public_route_table_association" {
-  subnet_id = aws_subnet.sample_public_subnet.id
+# associate route table with public subnet 1
+resource "aws_route_table_association" "public_route_table_association_1" {
+  subnet_id      = aws_subnet.sample_public_subnet_1.id
+  route_table_id = aws_route_table.sample_public_route_table.id
+}
+
+# associate route table with public subnet 2
+resource "aws_route_table_association" "public_route_table_association_2" {
+  subnet_id      = aws_subnet.sample_public_subnet_2.id
   route_table_id = aws_route_table.sample_public_route_table.id
 }
