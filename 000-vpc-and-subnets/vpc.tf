@@ -10,21 +10,33 @@ resource "aws_vpc" "sample_vpc" {
 resource "aws_subnet" "sample_public_subnet_1" {
   cidr_block = "10.0.1.0/24"
   vpc_id     = aws_vpc.sample_vpc.id
+  tags = {
+    "Name" : "public subnet 1"
+  }
 }
 
 resource "aws_subnet" "sample_public_subnet_2" {
   cidr_block = "10.0.2.0/24"
   vpc_id     = aws_vpc.sample_vpc.id
+  tags = {
+    "Name" : "public subnet 2"
+  }
 }
 
 resource "aws_subnet" "sample_private_subnet_1" {
   cidr_block = "10.0.3.0/24"
   vpc_id     = aws_vpc.sample_vpc.id
+  tags = {
+    "Name" : "private subnet 1"
+  }
 }
 
 resource "aws_subnet" "sample_private_subnet_2" {
   cidr_block = "10.0.4.0/24"
   vpc_id     = aws_vpc.sample_vpc.id
+  tags = {
+    "Name" : "private subnet 2"
+  }
 }
 
 # add a single internet gateway
