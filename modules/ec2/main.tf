@@ -10,8 +10,8 @@ resource "aws_instance" "web_instance_1" {
   user_data = <<-EOF
   #!/bin/bash -ex
   
-  sudo apt update && sudo apt install nginx
-  echo "<h1>$(curl https://api.kanye.rest/?format=text)</h1>" >  /usr/share/nginx/html/index.html
+  sudo apt update && sudo apt -y install nginx cloud-utils
+  sudo echo "<h1>instance: $(ec2metadata --instance-id)</h1><h1>$(curl https://api.kanye.rest/?format=text)</h1>" > /var/www/html/index.nginx-debian.html
   EOF
 
   tags = {
