@@ -24,7 +24,6 @@ variable "asg_prefix" {
 variable "asg_name" {
   description = "AutoScaling group subnets"
   type        = string
-  default     = "sample-asg"
 }
 
 variable "asg_availability_zones" {

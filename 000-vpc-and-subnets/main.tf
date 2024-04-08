@@ -48,12 +48,3 @@ module "ec2_instance_subnet_4" {
   instance_security_group = module.security_groups.backend_server_security_group
   instance_subnet         = aws_subnet.sample_private_subnet_2.id
 }
-
-module "webserver_asg_template" {
-  source = "../modules/asg"
-
-  instance_security_group = module.security_groups.webserver_security_group
-  asg_prefix              = "webserver"
-  asg_availability_zones  = var.aws_availability_zones
-  asg_subnets             = [aws_subnet.sample_public_subnet_1.id, aws_subnet.sample_public_subnet_2.id]
-}
