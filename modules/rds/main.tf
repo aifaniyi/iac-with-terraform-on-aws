@@ -3,7 +3,7 @@ resource "aws_db_subnet_group" "sample_db_subnet_group" {
   subnet_ids = var.db_subnet_group_subnet_ids
 
   tags = {
-    Name = "Education"
+    Name = "SampleRDS"
   }
 }
 
