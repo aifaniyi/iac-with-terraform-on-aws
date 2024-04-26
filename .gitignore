@@ -5,3 +5,4 @@ terraform.tfstate
 terraform.tfstate.backup
 amazon.amis.json
 .env
+node_modules/
