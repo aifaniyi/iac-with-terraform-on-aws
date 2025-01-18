@@ -1,4 +1,6 @@
-# create VPC
+# Description: This Terraform configuration file creates a VPC with 2 public and 2 private subnets. 
+# The public subnets are associated with an internet gateway and a route table that routes traffic to the internet gateway. 
+# The private subnets are not associated with an internet gateway and are not routable to the internet.
 resource "aws_vpc" "sample_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
